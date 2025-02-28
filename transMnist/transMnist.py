@@ -18,9 +18,9 @@ def convert(imgf, labelf, outf, n):
     images = []
 
     for i in range(n):
-        image = [ord(l.read(1))]
+        image = [l.read(1)[0]]  # 修改为读取字节并获取第一个字节的值
         for j in range(28*28):
-            image.append(ord(f.read(1)))
+            image.append(f.read(1)[0])  # 修改为读取字节并获取第一个字节的值
         images.append(image)
 
     for image in images:
@@ -30,7 +30,7 @@ def convert(imgf, labelf, outf, n):
     l.close()
 
 if __name__ == '__main__':
-    convert(".\Mnist\\t10k-images.idx3-ubyte", ".\Mnist\\t10k-labels.idx1-ubyte",
-            ".\Mnist\\mnist_test.csv", 10000)
-    convert(".\Mnist\\train-images.idx3-ubyte", ".\Mnist\\train-labels.idx1-ubyte",
-            ".\Mnist\mnist_train.csv", 60000)
+    convert("./Mnist/t10k-images.idx3-ubyte", "./Mnist/t10k-labels.idx1-ubyte",
+            "./Mnist/mnist_test.csv", 10000)
+    convert("./Mnist/train-images.idx3-ubyte", "./Mnist/train-labels.idx1-ubyte",
+            "./Mnist/mnist_train.csv", 60000)
